@@ -1,3 +1,3 @@
 # livemind
 
-*_the ephemeral thinking pad_*
+*_the hyper-ephemeral thinking pad_*
