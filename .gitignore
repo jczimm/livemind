@@ -6,11 +6,15 @@ pids
 *.pid
 *.seed
 *.pid.lock
-dist/
+
 node_modules/
 .npm
 .yarn-integrity
 .env
+
 .profile/
 .old/
+
 nccdist/
+dist/
+releases/
