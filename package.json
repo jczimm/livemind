@@ -16,7 +16,8 @@
     "dist:linux": "npm run build && electron-builder --linux",
     "dist:all": "npm run clean:releases && npm run build && electron-builder -mwl",
     "pack": "electron-builder --dir",
-    "start": "electron ."
+    "start": "electron .",
+    "start-web": "parcel serve ./index.html"
   },
   "dependencies": {
     "electron-titlebar": "^0.0.3"
@@ -27,7 +28,8 @@
     "electron-builder": "^20.36.2",
     "eslint": "5.3.0",
     "eslint-config-airbnb-base": "13.1.0",
-    "eslint-plugin-import": "2.14.0"
+    "eslint-plugin-import": "2.14.0",
+    "parcel": "^2.0.0-beta.1"
   },
   "engines": {
     "node": ">=8.12.0"

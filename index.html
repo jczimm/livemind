@@ -86,6 +86,29 @@
             <canvas id="canvas"></canvas>
         </div>
         <script>
+            const {
+                titlebarHeight,
+                windowConfig: {
+                    width: w,
+                    height: h,
+                    frame,
+                },
+            } = require('./config');
+
+            try {
+                const win = require('electron').remote.getCurrentWindow();
+
+                win.on('blur', () => document.body.setAttribute('data-blurred', 'true'));
+                win.on('focus', () => document.body.setAttribute('data-blurred', 'false'));
+                
+                if (!frame) {
+                    require('electron-titlebar');
+                    document.getElementById('electron-titlebar').style.height = `${titlebarHeight}px`;
+                }
+            } catch(e) {
+                console.log('Running without electron.')
+            }
+
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
 
@@ -98,17 +121,6 @@
                 x: e.clientX - rect.left,
                 y: e.clientY - rect.top + titlebarHeight
             });
-            //
-            
-            const config = require('./config');
-            const { width: w, height: h, frame } = config.windowConfig;
-            const { titlebarHeight } = config;
-            const win = require('electron').remote.getCurrentWindow();
-            
-            if (!frame) {
-                require('electron-titlebar');
-                document.getElementById('electron-titlebar').style.height = `${titlebarHeight}px`;
-            }  
             
             canvas.width  = canvas.offsetWidth - 10;
             canvas.height = canvas.offsetHeight - 10;
@@ -141,9 +153,6 @@
                 ctx.fillStyle = '#fff';
                 ctx.fill();
             }
-            
-            win.on('blur', () => document.body.setAttribute('data-blurred', 'true'));
-            win.on('focus', () => document.body.setAttribute('data-blurred', 'false'));
         </script>
     </body>
 </html>
